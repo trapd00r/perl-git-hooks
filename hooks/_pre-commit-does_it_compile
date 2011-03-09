@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+use strict;
+use warnings FATAL => 'all';
+
+use feature 'say';
+
+say 'pre-commit => does it compile...';
+
+do {
+  qx {
+    prove -Ilib t/00*.t
+  }
+} or die("pre-commit <==> ERRORS:\n", $@);
+
+
+say "pre-commit => it does compile OK!\n";
